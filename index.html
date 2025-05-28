@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>My Cool Blog</title>
+<link href="style.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&amp;display=swap" rel="stylesheet" />
+</head>
+<body>
+<header>
+  <h1>My Cool Blog</h1>
+  <nav id="top-nav">
+    <button id="btn-login">Login</button>
+    <button id="btn-register">Register</button>
+  </nav>
+</header>
+
+<div id="container">
+  <aside class="sidebar">
+    <div class="user-info" id="user-info" style="display:none;">
+      <p>Welcome, <span id="current-username"></span>!</p>
+      <button id="btn-logout" style="width: 100%; background:#dc3545; margin-top:5px;">Logout</button>
+      <button id="btn-admin-panel" style="width: 100%; background:#007bff; margin-top:10px; display:none;">Admin Panel</button>
+    </div>
+    <h2>Categories</h2>
+    <div class="category-list" id="category-list">
+      <!-- Categories loaded here -->
+    </div>
+  </aside>
+
+  <main class="content">
+    <!-- Login Form -->
+    <section id="login-section" style="display:none;">
+      <h2 class="form-heading">Login</h2>
+      <form id="login-form">
+        <input type="text" id="login-username" placeholder="Username" required autofocus />
+        <input type="password" id="login-password" placeholder="Password" required />
+        <button type="submit" class="primary-btn">Login</button>
+      </form>
+      <p>Don't have an account? <a href="#" id="show-register">Register here</a></p>
+      <p id="login-error-msg" style="color:#dc3545; font-weight:600;"></p>
+    </section>
+
+    <!-- Register Form -->
+    <section id="register-section" style="display:none;">
+      <h2 class="form-heading">Register</h2>
+      <form id="register-form">
+        <input type="text" id="register-username" placeholder="Username" required autofocus />
+        <input type="password" id="register-password" placeholder="Password" required />
+        <button type="submit" class="primary-btn">Register</button>
+      </form>
+      <p>Already have an account? <a href="#" id="show-login">Login here</a></p>
+      <p id="register-error-msg" style="color:#dc3545; font-weight:600;"></p>
+    </section>
+
+    <!-- Blog Posts List -->
+    <section id="posts-section" style="display:none;">
+      <h2>Articles</h2>
+      <div class="post-list" id="post-list"></div>
+    </section>
+
+    <!-- Post Detail and Comments -->
+    <section id="post-detail-section" style="display:none;">
+      <button id="btn-back" style="color: #007bff; background:none; border:none; margin-bottom: 0.5rem; cursor:pointer;">← Back to Articles</button>
+      <article class="post-detail" id="post-detail">
+        <!-- Post details injected here -->
+      </article>
+      <section class="comments-section">
+        <h3>Comments</h3>
+        <div class="comments-list" id="comments-list">
+          <!-- Comments injected here -->
+        </div>
+        <div class="comment-form">
+          <h4>Add a Comment</h4>
+          <form id="comment-form">
+            <input type="text" id="comment-author" placeholder="Your Name" required />
+            <textarea id="comment-text" placeholder="Your comment" required></textarea>
+            <button type="submit">Post Comment</button>
+          </form>
+        </div>
+      </section>
+    </section>
+
+    <!-- Admin Panel -->
+    <section id="admin-panel" style="display:none;">
+      <h2>Admin Panel</h2>
+      <div class="admin-nav" role="navigation" aria-label="Admin navigation">
+        <button id="admin-view-posts-btn" class="small-btn">Manage Posts</button>
+        <button id="admin-view-categories-btn" class="small-btn">Manage Categories</button>
+        <button id="btn-admin-logout" class="small-btn danger">Logout Admin</button>
+      </div>
+
+      <section id="admin-posts-section" class="admin-section" style="display:none;">
+        <h3>Manage Posts</h3>
+        <button id="btn-new-post" class="small-btn">New Post</button>
+        <div id="admin-post-list" style="margin-top:1rem;"></div>
+
+        <div id="admin-post-form-section" style="margin-top:1rem; display:none;">
+          <h4 id="post-form-title">New Post</h4>
+          <form id="admin-post-form">
+            <div class="form-group">
+              <label for="post-title">Title</label>
+              <input type="text" id="post-title" required />
+            </div>
+            <div class="form-group">
+              <label for="post-category-select">Category</label>
+              <select id="post-category-select" required>
+                <!-- Categories options injected here -->
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="post-content">Content</label>
+              <textarea id="post-content" class="input-large" required></textarea>
+            </div>
+            <button type="submit" class="small-btn">Save Post</button>
+            <button type="button" id="btn-cancel-post" class="small-btn danger">Cancel</button>
+          </form>
+        </div>
+      </section>
+
+      <section id="admin-categories-section" class="admin-section" style="display:none;">
+        <h3>Manage Categories</h3>
+        <form id="admin-category-form" class="inline-form" style="margin-bottom:1rem;">
+          <input type="text" id="new-category-name" placeholder="New category name" required />
+          <button type="submit" class="small-btn">Add</button>
+        </form>
+        <div id="admin-category-list"></div>
+      </section>
+    </section>
+  </main>
+</div>
+
+<div id="message-banner" role="alert" aria-live="assertive">Message</div>
+
+<script src="app.js"></script>
+</body>
+</html>
+
